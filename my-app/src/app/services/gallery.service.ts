@@ -16,14 +16,14 @@ export class GalleryService {
     console.log('gallery service connected...');
   }
   
-  getPhotos() : Observable<Photo[]> 
+  getPhotos() : Observable<Photo[]>    //gets the gallery imports from tipycode
   {
     return this.http.get('https://jsonplaceholder.typicode.com/photos')
     .map(res => res.json());
   }
 
   getPhoto(id: number): Observable<Photo>{
-    return this.http.get('https://jsonplaceholder.typicode.com/photos/'+id)
+    return this.http.get('https://jsonplaceholder.typicode.com/photos/'+id) //gets specific item from gallery
     .map(data => data.json());
     
   }

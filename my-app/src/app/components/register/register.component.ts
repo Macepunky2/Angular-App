@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from '../../user';
+
 
 @Component({
   selector: 'app-register',
@@ -9,81 +11,47 @@ import { User } from '../../user';
 })
 export class RegisterComponent implements OnInit {
  
-  name:string;
-  email:string;
-  pass:string;
-  passConfirm:string;
-  website:string;
-  phone: string;
+
+    name: null;
+    username: null;
+    password: null;
+    email: null;
+    website: null;
+    phone: null
+ 
 
   users: User[];
+  form: FormGroup; 
 
 
-  onSubmit(username,email,pass,passConfirm)
-  { 
-    let valid = true;
+  constructor(private dataService:DataService, private fb:FormBuilder) {
+    this.createForm(); 
+  }
 
-    if(!username)
-    {
-      valid = false;
-      alert('Missing name');
-
-
-    }else if(username){
-      console.log(username);
-    }
-
-
-    if(!email)
-    {
-      valid = false;
-      alert('Missing email');
-
-
-    }else if(email){
-      console.log(email);
-    }
-
-    
-    if(pass != passConfirm || !pass || !passConfirm)
-    { 
-      alert('Password not match');
-      return false;
-
-    }else if(this.pass === this.passConfirm){
-      console.log('pass match');
-    }
-
-    if(valid == true)
-
-    {
-      alert('Register successful!');
-
+  private createForm() {
+    this.form = this.fb.group({
+      nombre: [null, [
+        Validators.required,
+        Validators.minLength(3)
+      ]],
+      apellido: [null, Validators.required],
+      email: [null, [
+        Validators.required,
+        Validators.email
+      ]],
+      confirmEmail: [null, [
+        Validators.required,
+        Validators.email/*,
+        EmailValidation.MatchEmailValues(this.form.get('email').value, this.form.get('confirmEmail').value)*/
+      ]],
+      dob: [null],
+      pais: [null],
+      acepto: [false, Validators.requiredTrue]
+    }, {
       
-      this.users.push
-      ({
-          name: username,
-          username: username,
-          email: email,
-          password: pass,
-          website: username,
-          phone: username
-      });
-
-      return false;     
-
-     
-    }
+    });
   }
 
-    
-    
-  
-
-
-  constructor(private dataService:DataService) { 
-
-  }
 
   
 
@@ -91,6 +59,22 @@ export class RegisterComponent implements OnInit {
     this.dataService.getUsers().subscribe((users) => {
       this.users = users;
      });
-  }
+      }
 
+      
+  onSubmit(form) {
+    
+    this.users.push
+    ({
+          name: this.name,
+          username: name,
+          email: this.email,
+          password: this.password,
+          website: this.website,
+          phone: this.phone
+ 
+    });
+    console.log(this.users) ; 
+  }
+  
 }

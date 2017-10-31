@@ -1,12 +1,14 @@
-<div class="album text-muted">
+
         <div class="container" id="artcontainer">
           <div class="row">
-              <div class="col"></div>
+              <div class="col">
+
+              </div>
               <div class="col-6">          
-        <div class="card-deck">
-          <div  *ngFor="let photo of photos | slice:0:20">
+        <div class="card-deck" id="digicards">
+          <div >
                
-             <div class="card">        
+             <div  *ngFor="let photo of photos | slice:0:20" class="card">        
             
               
                     <a [routerLink]="['/photo', photo.id]" id="nodeco"> <img class="card-img-top" src="{{photo.thumbnailUrl}}" alt="Card image cap">
@@ -43,5 +45,4 @@
                 
        </div>
     </div>
-</div>
 </div>

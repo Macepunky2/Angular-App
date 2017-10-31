@@ -2,34 +2,76 @@
     <div class="row">
       <div class="col"></div>
       <div class="col-6">
-<form >
-    <div class="form-group">
-      <label for="exampleInputEmail1">User name: </label>
-  
-      <input type="test" #username class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your desired user name">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Email address:</label>
-        <input type="email"  #email class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email@something">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password: </label>
-      <input type="password"  #pass class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password confirmation: </label>
-        <input type="password"  #passConfirm class="form-control" id="exampleInputPassword1" placeholder="Please re-enter your password">
-      </div>
-
-      <button type="button" (click)="onSubmit(username.value ,email.value ,pass.value,passConfirm.value)" class="btn btn-dark" id="siteKeyword">Register</button>
-      <h1>Users:</h1>
-      <div *ngFor= "let user of users">
-        {{user.username}}
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="form-group row">
+            <label for="name">Username</label>
+            <input type="text" id="name" class="form-control" formControlName="name">
+            <span class="form-text form-validation" *ngIf="form.get('name').errors?.required && form.get('name').touched">Este campo es requerido</span>
+          </div>
+      
+          <div class="form-group row">
+            <label for="password">Password</label>
+            <input type="text" id="password" class="form-control" formControlName="password">
+            <span class="form-text form-validation" *ngIf="false">Error</span>
+          </div>
+      
+          <div class="form-group row">
+            <label for="email">Email</label>
+            <input type="text" id="email" class="form-control" formControlName="email">
+            <span class="form-text form-validation" *ngIf="false">Error</span>
+          </div>
+          
+          <div class="form-group row">
+            <label for="confirmEmail">Confirmar Email</label>
+            <input type="text" id="confirmEmail" class="form-control" formControlName="confirmEmail">
+            <span class="form-text form-validation" *ngIf="false">Error</span>
+          </div>
+                
+          <div class="form-check">
+              <label for="terminos" class="form-check-label">
+                <input type="checkbox" id="terminos" class="form-check-input" formControlName="acepto">
+              Acepto los terminos y condiciones</label>
+            <span class="form-text form-validation" *ngIf="false">Error</span>
+          </div>
+      
+          <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Guardar</button>
+          <button class="btn btn-danger" type="reset" [disabled]="form.pristine">Cancelar</button>
+        </form>
     
-      </div>
-    </form>
+      
+        <p>{{ personForm.value | json }}</p>
+        <p>{{ personForm.valid }}</p>
+
+        <span *ngFor= "let user of users">
+          <div>
+            <ngb-accordion>
+               <ngb-panel title="{{user.username}}">
+              
+    
+                  <ng-template ngbPanelContent>
+                      <div class="card">
+                          <div class="card-header">
+                            <p>{{user.username}} : </p>
+                          </div>
+                          <div class="card-block">
+                            <blockquote class="card-blockquote">
+                                <p> name:  {{user.name}} </p>
+                                <p> email: {{user.email}}</p>
+                                <p>phone: {{user.phone}} </p>
+                                <hr>
+                              <footer> website: {{user.website}} </footer>
+                            </blockquote>
+                          </div>
+                        </div>
+                       
+                  
+                  </ng-template>
+             
+                </ngb-panel>
+              </ngb-accordion>
+            </div>
+    
+            </span>     
   
 
 
@@ -37,3 +79,5 @@
 
 </div>
 <div class="col"></div>
+</div>
+</div>

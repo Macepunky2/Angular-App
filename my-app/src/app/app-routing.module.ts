@@ -22,7 +22,9 @@ const routes: Routes = [
   { path: 'Register' ,component: RegisterComponent},
   { path: 'Profile', component: ProfileComponent},
   { path: 'photos' ,component: PhotoListComponent },
-  { path: 'photo/:id' ,component: Photo1Component }
+  { path: 'photo/:id' ,component: Photo1Component },
+  { path:  '**', component: PhotoListComponent},
+  { path: '**', redirectTo: 'photos' },
  
 ];
 

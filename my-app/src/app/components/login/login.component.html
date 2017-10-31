@@ -13,15 +13,39 @@
       <input type="password" #logPassword class="form-control" id="exampleInputPassword1" placeholder="Password">
     </div>
 
-    <button type="button" (click)="onLogin(logUserName.value,logPassword.value)" class="btn btn-dark" id="siteKeyword">Login</button> <p> not a member? <a routerLink="/Register" id="siteKeyword"> Click to REGISTER </a></p>
+    <button type="button" (click)="onLogin(logUserName.value,logPassword.value)" class="btn btn-dark" id="siteKeyword">Login</button> <span> not a member? <a routerLink="/Register" id="siteKeyword"> Click to REGISTER </a></span>
      
-    <h1>Users:</h1>
-    <div *ngFor= "let user of users">
-      {{user.username}}
-  
-    </div>
-      
-     
+    <h1>Online users:</h1>
+    <span *ngFor= "let user of users">
+      <div>
+        <ngb-accordion>
+           <ngb-panel title="{{user.username}}">
+          
+
+              <ng-template ngbPanelContent>
+                  <div class="card">
+                      <div class="card-header">
+                        <p>{{user.username}} : </p>
+                      </div>
+                      <div class="card-block">
+                        <blockquote class="card-blockquote">
+                            <p> name:  {{user.name}} </p>
+                            <p> email: {{user.email}}</p>
+                            <p>phone: {{user.phone}} </p>
+                            <hr>
+                          <footer> website: {{user.website}} </footer>
+                        </blockquote>
+                      </div>
+                    </div>
+                   
+              
+              </ng-template>
+         
+            </ngb-panel>
+          </ngb-accordion>
+        </div>
+
+        </span>     
           
  
 
@@ -31,3 +55,5 @@
 
 </div>
 <div class="col"></div>
+</div>
+</div>

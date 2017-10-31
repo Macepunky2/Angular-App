@@ -11,11 +11,14 @@ import { User } from '../user';
   styleUrls: ['./photo-list.component.scss']
 })
 export class PhotoListComponent implements OnInit {
+
   users: User[];
 
   photos : Photo[];
   
-  constructor(private galleryService: GalleryService,private dataService: DataService, private activatedRoute:ActivatedRoute) { }
+  constructor(private galleryService: GalleryService,
+             private dataService: DataService,
+             private activatedRoute:ActivatedRoute) { }
   
   ngOnInit() {
     this.galleryService.getPhotos().subscribe(photos => {
@@ -23,7 +26,7 @@ export class PhotoListComponent implements OnInit {
 
       
     });
-    this.dataService.getUsers().subscribe((users) => {
+    this.dataService.getUsers().subscribe(users => {
       this.users = users; });
   }
 

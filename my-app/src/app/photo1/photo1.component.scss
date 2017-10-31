@@ -9,11 +9,43 @@ h4 {
 }
 .card{
 
-    margin-top: 5em;
+    margin-top: 0.5em;
     width:100%;
-    margin-left: 100px;    
+   
 }
 .badge{
     background-color:#314190;  
    
+}
+#siteKeyword{
+    color:#FFC400;
+}
+#barButton{
+   color: #FFC400;
+   background-color: #000000;
+   border-color: #FC8F00;
+   
+  
+}
+.bg-dark[_ngcontent-c1] {
+    background-color: #1a1a1a !important;
+}
+h3 {
+    color: white;
+    font-weight: bold;
+}
+#nodeco{
+    text-decoration: none;
+}
+
+p{
+    color:black;
+}
+.my-pagination {
+    
+   
+        color: #FFC400;
+        background-color: #000000;
+        border-color: #FC8F00;    
+
 }

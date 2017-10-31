@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit {
     
     this.dataService.getUsers().subscribe((users) => {
       this.users = users;
-    console.log(this.users[0]);
-  });
+    });
 
 
   }

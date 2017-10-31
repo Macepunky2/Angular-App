@@ -1,16 +1,16 @@
 
-        <div class="container">
+        <div class="container" id="artcontainer">
           <div class="row">
                 <div class="col">
                 </div>
                 <div class="col-6">
-                 <div class="card"> 
+                 <div class="card" id= "digicards"> 
             <img class="card-img-top" src="{{photo.url}}" alt="Card image cap">
             <div class="card-body">
               <h4 class="card-title">Submission {{photo.id}}</h4>
               <p>"{{photo.title}}"</p>
               <hr>
-              <p>brief author comments</p>
+              <p>author said: {{photo.title}}</p>
               <hr>
               <div>
                   
@@ -28,7 +28,34 @@
               
               <small class="text-muted">Last updated 1 mins ago</small>
             </div>
+        </div >
+        <h3>Comments :</h3>
+
+        <div *ngFor="let comment of comments | paginate: { itemsPerPage: 10, currentPage: p }" class="card">
+          <div class="card-body">
+            <h4 class="card-title">{{comment.email}} says: </h4>
+            <p class="card-text">{{comment.body}}</p>
+
+            <ngb-accordion type="button" class="btn-dark" id="nodeco">
+              <ngb-panel title="Post Details">
+                  <div class="card-footer">
+                      
+                      
+                    
+
+                <ng-template ngbPanelContent>
+                 <p> name: {{comment.name}} </p>
+                 <p> post number: {{comment.id}}</p>
+                 <p> email: {{comment.email}} </p>
+                </ng-template>
+              </div>
+              </ngb-panel>
+            </ngb-accordion>
+  
+          </div>
         </div>
+        <pagination-controls class="my-pagination" (pageChange)="p = $event" ></pagination-controls>
+
         </div>
         <div class="col">
                 
